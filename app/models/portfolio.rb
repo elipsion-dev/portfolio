@@ -1,4 +1,6 @@
 class Portfolio < ApplicationRecord
+  has_many :technologies
+  include Placeholder
   extend FriendlyId
   friendly_id :title, use: :slugged
 
@@ -9,4 +11,11 @@ class Portfolio < ApplicationRecord
   end
 
   scope :ruby_on_rails_portfolio_items, -> { where(subtitle: 'Ruby on Rails') }
+
+  after_initialize :set_defaults
+
+  def set_defaults
+    self.main_image ||= Placeholder.image_generator(width: '600', height: '400')
+    self.thumb_image ||= Placeholder.image_generator(width: '350', height: '200')
+  end
 end

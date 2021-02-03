@@ -12,7 +12,6 @@
   )
 end
 
-
 10.times do |blog|
   Blog.create!(
     title: "My Blog Post #{blog}",
@@ -65,3 +64,12 @@ end
     main_image: "http://placehold.it/600x400"
   )
 end
+
+3.times do |technology|
+  Technology.create!(
+    name: "Technology: #{technology}",
+    portfolio_id: Portfolio.last.id
+  )
+end
+
+puts "3 Technologies Created"
